@@ -17,6 +17,7 @@ end
 
  Vagrant.configure(2) do |config|
 	guests.each do |guest|
+	config.vm.provision "shell", path: "install_script/install_jenkins"
     	config.vm.define guest['name'] do |guest_vm|
 			set_box(guest, guest_vm)
 			set_cpus_and_memory(guest, guest_vm)
@@ -29,11 +30,6 @@ end
 		end
 	end
 	end
-
-
-Vagrant.configure("2") do |config|
-  config.vm.provision "shell", path: "install_script/install"
-end
 
 
 def set_cpus_and_memory(guest, guest_vm)
